@@ -1,6 +1,6 @@
 <% @posts.each do |p| %>
 	<div>
-		<h2><%= p.title %></h2>
+		<h2><%= link_to p.title, p %></h2>
 		<small>Submitted <%= time_ago_in_words(p.created_at) %> ago</small>
 	</div>
 <% end %>

@@ -29,25 +29,34 @@
 			<li><a href="https://github.com/foxlance">Github</a></li>
 			<li><a href="mailto:lancevincent@gmail.com">Email</a></li>
 		</ul>
+
+		<% if !user_signed_in? %>
+			<p class="sign_in"><%= link_to "Admin Login", new_user_session_path %></p>
+		<% end %>
 	</div>
 
 	<div id="main_content">
 		<div id="header">
 			<p>All Posts</p>
-
+			
+			<% if user_signed_in? %>
 			<div class="buttons">
 				<%= link_to new_post_path do %>
 				<button class="button">New Post</button>
 				<% end %>
+				<%= link_to destroy_user_session_path, method: :delete do %>
 				<button class="button">Log Out</button>
+				<% end %>
 			</div>
+			<% end %>
 		</div>
-
-		<% flash.each do |name, msg| %>
-			<%= content_tag(:div, msg, class: 'alert') %>
-		<% end %>
 		
 		<div id="page_wrapper">
+
+			<% flash.each do |name, msg| %>
+				<%= content_tag(:div, msg, class: 'alert') %>
+			<% end %>
+
 			<%= yield %>
 		</div>
 	</div>

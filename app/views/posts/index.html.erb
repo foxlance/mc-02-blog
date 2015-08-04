@@ -1,6 +1,8 @@
-<% @posts.each do |p| %>
-<div class="post_wrapper">
-	<h2 class="title"><%= link_to p.title, post_path(p) %></h2>
-	<p class="date"><%= time_ago_in_words(p.created_at) %></p>
-</div>
+<% if @posts.any? %>
+	<% @posts.each do |p| %>
+	<div class="post_wrapper">
+		<h2 class="title"><%= link_to p.title, post_path(p) %></h2>
+		<p class="date"><%= time_ago_in_words(p.created_at) %></p>
+	</div>
+	<% end %>
 <% end %>
